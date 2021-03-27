@@ -1,14 +1,12 @@
 <?php
 
-
 namespace app\controllers;
-
 
 use yii\web\Controller;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
-    public $layout = 'user';
+    public $layout = 'admin';
 
     public function actionIndex()
     {
@@ -19,4 +17,5 @@ class UserController extends Controller
     {
 
     }
+
 }

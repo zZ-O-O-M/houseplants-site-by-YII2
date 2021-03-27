@@ -4,11 +4,9 @@
 /* @var $content string */
 
 use app\assets\MyAsset;
-use app\widgets\Alert;
+
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+
 
 MyAsset::register($this);
 $this->beginPage();
@@ -65,7 +63,6 @@ $this->beginPage();
   </div>
 </nav>
 
-<!--------- /Header --------->
 <?= $content ?>
 <?php $this->endBody() ?>
 </body>
