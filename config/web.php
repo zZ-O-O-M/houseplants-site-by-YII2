@@ -13,7 +13,7 @@ $config = [
     ],
     'language'   => 'ru-RU',
     'charset'    => 'UTF-8',
-    'defaultRoute' => 'user',
+//    'defaultRoute' => 'user',
     'components' => [
         'request'      => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

@@ -37,7 +37,7 @@ $this->beginPage();
         <a class="nav-link" href="#">Сделать заказ</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="admin/admin-index.html">Вид админа</a>
+        <a class="nav-link" href="/admin">Вид админа</a>
       </li>
     </ul>
   </div>

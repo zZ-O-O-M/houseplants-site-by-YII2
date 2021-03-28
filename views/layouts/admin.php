@@ -17,9 +17,9 @@ $this->beginPage();
   <meta charset="<?= Yii::$app->charset ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
+   <?php $this->registerCsrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+   <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -50,7 +50,7 @@ $this->beginPage();
     </div>
     <div class="order-button">
       <a class="order-button__link" href="#">
-<!--        <img class="order-button__image" src="../images/basket.png" alt="">-->
+        <!--        <img class="order-button__image" src="../images/basket.png" alt="">-->
       </a>
     </div>
     <div class="navbar-button logout-button">
@@ -63,6 +63,7 @@ $this->beginPage();
     <a href="../authorization.html">Войти</a>
   </div>
 </nav>
+
 
 
 
