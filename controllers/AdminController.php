@@ -6,6 +6,7 @@ use app\helpers\Helper;
 use app\models\EditPlantForm;
 use app\models\Plant;
 use app\models\PlantType;
+use app\models\WindowType;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -27,7 +28,12 @@ class AdminController extends Controller
    public function actionEditPlant()
    {
       $model = new EditPlantForm();
+
+      /* Getting data */
       $plantTypes = Helper::getSelectList(PlantType::find()->asArray()->all());
+      $windowTypes = Helper::getSelectList(WindowType::find()->asArray()->all());
+
+      $model->windowType = '3';
 
       if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
          if (\Yii::$app->request->isPjax) {
@@ -39,7 +45,7 @@ class AdminController extends Controller
          }
       }
 
-      return $this->render('editPlant', compact('model', 'plantTypes'));
+      return $this->render('editPlant', compact('model', 'plantTypes', 'windowTypes'));
    }
 
    public function actionView()

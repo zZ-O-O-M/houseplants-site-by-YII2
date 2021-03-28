@@ -38,12 +38,14 @@ use yii\widgets\Pjax;
           ]) ?>
        <?= $form->field($model, 'plantType')->dropDownList($plantTypes) ?>
        <?= $form->field($model, 'windowType')->dropDownList([
-          1 => 'first',
-          2 => 'second'
+           1 => '1',
+           2 => '2',
+           3 => '3'
        ]) ?>
        <?= $form->field($model, 'description')->textarea(
           [
-             'placeholder' => 'Введите описание'
+             'placeholder' => 'Введите описание',
+             'rows'        => 5
           ]) ?>
 
       <div class="form-group edit-plant-container__button-block">
