@@ -28,22 +28,21 @@ class AdminController extends Controller
 
    public function actionAddPlant()
    {
-      $model             = new PlantForm();
+      $model             = new Plant();
       $this->view->title = 'Добавление растения';
 
       /* If request data*/
       if ($model->load(\Yii::$app->request->post())) {
          if (\Yii::$app->request->isPjax) {
-            $newPlant = new Plant();
 
-            $newPlant->name         = '123';
-            $newPlant->plant_type    = 1;
-            $newPlant->window_type   = 1;
-            $newPlant->requirements = '1123123';
+            $model->name         = '123';
+            $model->plant_type    = 1;
+            $model->window_type   = 1;
+            $model->requirements = '1123123';
 
-            if ($newPlant->save()) {
+            if ($model->save()) {
                \Yii::$app->session->setFlash('success', 'Данные добавлены (Ajax)');
-               $model = new PlantForm();
+               $model = new Plant();
             }
             else {
                \Yii::$app->session->setFlash('error', 'Ошибка при добалении данных!');
@@ -65,14 +64,14 @@ class AdminController extends Controller
 
    public function actionEditPlant(int $id)
    {
-      $model             = new PlantForm();
+      $model             = new Plant();
       $this->view->title = 'Редактирование растения';
 
       /* If request data*/
       if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
          if (\Yii::$app->request->isPjax) {
             \Yii::$app->session->setFlash('success', 'Данные изменены (Ajax)');
-            $model = new PlantForm();
+            $model = new Plant();
          }
          else {
             \Yii::$app->session->setFlash('success', 'Данные изменены');
@@ -87,8 +86,8 @@ class AdminController extends Controller
 
       /* Set current plant's info as default values to fields */
       $model->name         = $plantInfo['name'];
-      $model->plantType    = $plantInfo['plant_type'];
-      $model->windowType   = $plantInfo['window_type'];
+      $model->plant_type    = $plantInfo['plant_type'];
+      $model->window_type   = $plantInfo['window_type'];
       $model->requirements = $plantInfo['requirements'];
 
       return $this->render('plantForm', compact('model', 'plantTypes', 'windowTypes'));

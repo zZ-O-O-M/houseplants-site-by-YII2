@@ -44,8 +44,8 @@ use yii\widgets\Pjax;
        ]) ?>
 
        <?= $form->field($model, 'name')->input('text') ?>
-       <?= $form->field($model, 'plantType')->dropDownList($plantTypes) ?>
-       <?= $form->field($model, 'windowType')->dropDownList($windowTypes) ?>
+       <?= $form->field($model, 'plant_type')->dropDownList($plantTypes) ?>
+       <?= $form->field($model, 'window_type')->dropDownList($windowTypes) ?>
        <?= $form->field($model, 'requirements')->textarea(
           [
              'rows' => 5
