@@ -9,6 +9,9 @@ use yii\widgets\Pjax;
 
 
 ?>
+<div class="container">
+  <h1 style="text-align: center"><?= $this->title ?></h1>
+</div>
 <?php Pjax::begin() ?>
 
 <?php if (Yii::$app->session->hasFlash('success')): ?>
@@ -16,6 +19,14 @@ use yii\widgets\Pjax;
     <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times</span>
     </button>
      <?= Yii::$app->session->getFlash('success'); ?>
+  </div>
+<?php endif; ?>
+
+<?php if (Yii::$app->session->hasFlash('error')): ?>
+  <div class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close"><span aria-hidden="true">&times</span>
+    </button>
+     <?= Yii::$app->session->getFlash('error'); ?>
   </div>
 <?php endif; ?>
 
@@ -32,20 +43,12 @@ use yii\widgets\Pjax;
           ]
        ]) ?>
 
-       <?= $form->field($model, 'name')->input('text',
-          [
-             'placeholder' => 'Введите наименование'
-          ]) ?>
+       <?= $form->field($model, 'name')->input('text') ?>
        <?= $form->field($model, 'plantType')->dropDownList($plantTypes) ?>
-       <?= $form->field($model, 'windowType')->dropDownList([
-           1 => '1',
-           2 => '2',
-           3 => '3'
-       ]) ?>
-       <?= $form->field($model, 'description')->textarea(
+       <?= $form->field($model, 'windowType')->dropDownList($windowTypes) ?>
+       <?= $form->field($model, 'requirements')->textarea(
           [
-             'placeholder' => 'Введите описание',
-             'rows'        => 5
+             'rows' => 5
           ]) ?>
 
       <div class="form-group edit-plant-container__button-block">

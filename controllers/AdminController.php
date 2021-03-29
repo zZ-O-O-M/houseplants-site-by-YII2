@@ -3,7 +3,8 @@
 namespace app\controllers;
 
 use app\helpers\Helper;
-use app\models\EditPlantForm;
+use app\models\AddPlantForm;
+use app\models\PlantForm;
 use app\models\Plant;
 use app\models\PlantType;
 use app\models\WindowType;
@@ -25,27 +26,72 @@ class AdminController extends Controller
 
    }
 
-   public function actionEditPlant()
+   public function actionAddPlant()
    {
-      $model = new EditPlantForm();
+      $model             = new PlantForm();
+      $this->view->title = 'Добавление растения';
 
-      /* Getting data */
-      $plantTypes = Helper::getSelectList(PlantType::find()->asArray()->all());
-      $windowTypes = Helper::getSelectList(WindowType::find()->asArray()->all());
-
-      $model->windowType = '3';
-
-      if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+      /* If request data*/
+      if ($model->load(\Yii::$app->request->post())) {
          if (\Yii::$app->request->isPjax) {
-            \Yii::$app->session->setFlash('success', 'Данные приняты by Pjax');
-            $model = new EditPlantForm();
-         } else {
-            \Yii::$app->session->setFlash('success', 'Данные приняты');
+            $newPlant = new Plant();
+
+            $newPlant->name         = '123';
+            $newPlant->plant_type    = 1;
+            $newPlant->window_type   = 1;
+            $newPlant->requirements = '1123123';
+
+            if ($newPlant->save()) {
+               \Yii::$app->session->setFlash('success', 'Данные добавлены (Ajax)');
+               $model = new PlantForm();
+            }
+            else {
+               \Yii::$app->session->setFlash('error', 'Ошибка при добалении данных!');
+            }
+         }
+         else {
+            \Yii::$app->session->setFlash('success', 'Данные добавлены');
             return $this->refresh();
          }
       }
 
-      return $this->render('editPlant', compact('model', 'plantTypes', 'windowTypes'));
+      /* Getting data */
+      $plantTypes  = Helper::makeSelectedList(PlantType::find()->asArray()->all());
+      $windowTypes = Helper::makeSelectedList(WindowType::find()->asArray()->all());
+
+
+      return $this->render('plantForm', compact('model', 'plantTypes', 'windowTypes'));
+   }
+
+   public function actionEditPlant(int $id)
+   {
+      $model             = new PlantForm();
+      $this->view->title = 'Редактирование растения';
+
+      /* If request data*/
+      if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+         if (\Yii::$app->request->isPjax) {
+            \Yii::$app->session->setFlash('success', 'Данные изменены (Ajax)');
+            $model = new PlantForm();
+         }
+         else {
+            \Yii::$app->session->setFlash('success', 'Данные изменены');
+            return $this->refresh();
+         }
+      }
+
+      /* Getting data */
+      $plantInfo   = Plant::find()->where('id=:id ', [':id' => $id])->asArray()->one();
+      $plantTypes  = Helper::makeSelectedList(PlantType::find()->asArray()->all());
+      $windowTypes = Helper::makeSelectedList(WindowType::find()->asArray()->all());
+
+      /* Set current plant's info as default values to fields */
+      $model->name         = $plantInfo['name'];
+      $model->plantType    = $plantInfo['plant_type'];
+      $model->windowType   = $plantInfo['window_type'];
+      $model->requirements = $plantInfo['requirements'];
+
+      return $this->render('plantForm', compact('model', 'plantTypes', 'windowTypes'));
    }
 
    public function actionView()
