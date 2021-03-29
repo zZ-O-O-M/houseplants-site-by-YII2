@@ -4,6 +4,8 @@
 
 /* @var $windowTypes array */
 
+/* @var $plantModel  */
+
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
@@ -43,10 +45,10 @@ use yii\widgets\Pjax;
           ]
        ]) ?>
 
-       <?= $form->field($model, 'name')->input('text') ?>
-       <?= $form->field($model, 'plant_type')->dropDownList($plantTypes) ?>
-       <?= $form->field($model, 'window_type')->dropDownList($windowTypes) ?>
-       <?= $form->field($model, 'requirements')->textarea(
+       <?= $form->field($plantModel, 'name')->input('text') ?>
+       <?= $form->field($plantModel, 'plant_type')->dropDownList($plantTypes) ?>
+       <?= $form->field($plantModel, 'window_type')->dropDownList($windowTypes) ?>
+       <?= $form->field($plantModel, 'requirements')->textarea(
           [
              'rows' => 5
           ]) ?>
