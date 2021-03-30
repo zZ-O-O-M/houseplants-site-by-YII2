@@ -15,7 +15,8 @@ class AdminController extends Controller
 
    public function actionIndex()
    {
-      return $this->render('allPlants');
+      $plantsInfo = Plant::find()->asArray()->all();
+      return $this->render('allPlants', compact('plantsInfo'));
    }
 
    public function actionPlant($id)
@@ -58,10 +59,10 @@ class AdminController extends Controller
       }
 
       /* If request data*/
-      if ($plantModel->load(\Yii::$app->request->post()) && $plantModel->validate()) {
+      if ($plantModel->load(\Yii::$app->request->post()) && $plantModel->save()) {
          if (\Yii::$app->request->isPjax) {
             \Yii::$app->session->setFlash('success', 'Данные изменены (Ajax)');
-            $plantModel = new Plant();
+            $plantModel = Plant::findOne($id);
          }
          else {
             \Yii::$app->session->setFlash('success', 'Данные изменены');
@@ -76,13 +77,13 @@ class AdminController extends Controller
       return $this->render('plantForm', compact('plantModel', 'plantTypes', 'windowTypes'));
    }
 
-   public function actionDelete(int $id)
+   public function actionDeletePlant(int $id)
    {
       $plant = Plant::findOne($id);
       if ($plant) {
          $plant->delete();
       }
-      return $this->render('editPlant', compact('model'));
+      return \Yii::$app->response->redirect(['/admin']);
    }
 
 }

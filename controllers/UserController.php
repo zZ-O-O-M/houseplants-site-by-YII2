@@ -4,19 +4,21 @@
 namespace app\controllers;
 
 
+use app\models\Plant;
 use yii\web\Controller;
 
 class UserController extends Controller
 {
-    public $layout = 'user';
+   public $layout = 'user';
 
-    public function actionIndex()
-    {
-        return $this->render('allPlants');
-    }
+   public function actionIndex()
+   {
+      $plantsInfo = Plant::find()->asArray()->all();
+      return $this->render('allPlants', compact('plantsInfo'));
+   }
 
-    public function actionPlant($id)
-    {
+   public function actionPlant($id)
+   {
 
-    }
+   }
 }

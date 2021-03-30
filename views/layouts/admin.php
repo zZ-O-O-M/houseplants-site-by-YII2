@@ -32,13 +32,16 @@ $this->beginPage();
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="admin-index.html">Список всех растений</a>
+        <a class="nav-link" href="/admin">Список всех растений</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Сделать заказ</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../index.html">Вид пользователя</a>
+        <a class="nav-link" href="/admin/add-plant">Добавить растение</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user">Вид пользователя</a>
       </li>
     </ul>
   </div>

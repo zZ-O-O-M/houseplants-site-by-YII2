@@ -52,10 +52,10 @@ $config = [
          'showScriptName'      => false,
          'enableStrictParsing' => false,
          'rules'               => [
-            'admin/edit-plant/<id:\d+>' => 'admin/edit-plant'
+            'admin/edit-plant/<id:\d+>'   => 'admin/edit-plant',
+            'admin/delete-plant/<id:\d+>' => 'admin/delete-plant'
          ],
       ],
-
    ],
    'params'     => $params,
 ];
